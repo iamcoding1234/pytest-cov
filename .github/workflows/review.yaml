@@ -16,6 +16,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           pip install pytest-cov
+          pip install pytest-xdist
           # Your test command that generates coverage report
           pytest --cov=myproj tests/ --cov-report=xml
 
