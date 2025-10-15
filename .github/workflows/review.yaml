@@ -1,0 +1,25 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tests with coverage
+        run: |
+          # Your test command that generates coverage report
+          pytest --cov --cov-report=xml
+
+      - name: Upload coverage to CodeAnt AI
+        uses: CodeAnt-AI/codeant-coverage-action@v0.0.1
+        with:
+          access_token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          coverage_file: coverage.xml
